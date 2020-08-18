@@ -1,0 +1,9 @@
+User-agent: Pinterest
+Disallow: /
+
+User-agent: *
+Allow: /
+Disallow: /status/
+Disallow: /ping
+Disallow: /login
+Disallow: /auth/

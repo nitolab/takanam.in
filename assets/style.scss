@@ -1,0 +1,134 @@
+// $desktop: 100px;
+// $widewidth: 100px;
+// $fullhd: 100px;
+
+$mainColor: #39c337;
+$primary: $mainColor;
+
+// @import "bulma/bulma";
+
+@import "bulma/sass/utilities/_all";
+// @import "bulma/sass/utilities/initial-variables.sass";
+// @import "bulma/sass/utilities/functions.sass";
+// @import "bulma/sass/utilities/derived-variables.scss";
+// @import "bulma/sass/utilities/animations.sass";
+// @import "bulma/sass/utilities/mixins.sass";
+// @import "bulma/sass/utilities/controls.sass";
+
+// @import "bulma/sass/base/_all";
+// @import "bulma/sass/base/minireset.sass";
+// @import "bulma/sass/base/generic.sass";
+
+@import "bulma/sass/elements/_all";
+// @import "bulma/sass/elements/box.sass";
+@import "bulma/sass/elements/button.sass";
+@import "bulma/sass/elements/container.sass";
+// @import "bulma/sass/elements/content.sass";
+// @import "bulma/sass/elements/icon.sass";
+// @import "bulma/sass/elements/image.sass";
+@import "bulma/sass/elements/notification.sass";
+// @import "bulma/sass/elements/progress.sass";
+// @import "bulma/sass/elements/table.sass";
+// @import "bulma/sass/elements/tag.sass";
+// @import "bulma/sass/elements/title.sass";
+
+// @import "bulma/sass/elements/other.sass";
+
+
+@import "bulma/sass/form/_all";
+// @import "bulma/sass/form/shared.sass";
+// @import "bulma/sass/form/input-textarea.sass";
+// @import "bulma/sass/form/checkbox-radio.sass";
+// @import "bulma/sass/form/select.sass";
+// @import "bulma/sass/form/file.sass";
+// @import "bulma/sass/form/tools.sass";
+
+
+// @import "bulma/sass/components/_all";
+@import "bulma/sass/components/breadcrumb.sass";
+@import "bulma/sass/components/card.sass";
+// @import "bulma/sass/components/dropdown.sass";
+// @import "bulma/sass/components/level.sass";
+@import "bulma/sass/components/media.sass";
+@import "bulma/sass/components/menu.sass";
+// @import "bulma/sass/components/message.sass";
+// @import "bulma/sass/components/modal.sass";
+// @import "bulma/sass/components/navbar.sass";
+// @import "bulma/sass/components/pagination.sass";
+// @import "bulma/sass/components/panel.sass";
+// @import "bulma/sass/components/tabs.sass";
+
+
+// @import "bulma/sass/grid/_all";
+@import "bulma/sass/grid/columns.sass";
+// @import "bulma/sass/grid/tiles.sass";
+
+
+// @import "bulma/sass/helpers/_all";
+// @import "bulma/sass/helpers/color.sass";
+// @import "bulma/sass/helpers/float.sass";
+// @import "bulma/sass/helpers/other.sass";
+// @import "bulma/sass/helpers/overflow.sass";
+// @import "bulma/sass/helpers/position.sass";
+// @import "bulma/sass/helpers/spacing.sass";
+@import "bulma/sass/helpers/typography.sass";
+// @import "bulma/sass/helpers/visibility.sass";
+
+$footer-background-color: #333;
+
+// @import "bulma/sass/layout/_all";
+// @import "bulma/sass/layout/hero.sass";
+// @import "bulma/sass/layout/section.sass";
+@import "bulma/sass/layout/footer.sass";
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+// input, select, textarea {
+//   border: $green;
+// }
+
+
+::selection {
+    background: $mainColor;
+    color: #eee;
+}
+
+//Firefox
+::-moz-selection {
+    background: #000;
+    color: #fff;
+}
+
+.container {
+  // max-width: 900px;
+  margin: auto auto;
+}
+
+.columns {
+  // display: flex;
+  // flex-wrap: warp;
+}
+
+.svg {
+  width: 1em;
+  height: 1em;
+  margin-right:.5em;
+}
+
+.dw{
+  ._box {
+    margin-top:1em;
+  }
+}
+
+.delbox{
+  position:relative;
+  .button{
+    position:absolute;
+    right: 0;
+  }
+  min-height: 5em;
+}

@@ -1,0 +1,31 @@
+{
+  "name": "takanami",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "export": "nuxt export",
+    "serve": "nuxt serve"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/component-cache": "^1.1.6",
+    "@nuxtjs/google-gtag": "^1.0.4",
+    "@nuxtjs/sentry": "^4.3.4",
+    "js-cookie": "^2.2.1",
+    "nuxt": "^2.14.0",
+    "vue-js-modal": "^2.0.0-rc.6",
+    "vue-toast-notification": "^0.4.1",
+    "vuex-persistedstate": "^3.0.1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "bulma": "^0.9.0",
+    "font-mfizz": "^2.4.1",
+    "node-sass": "^4.14.1",
+    "nuxt-svg-loader": "^1.2.0",
+    "sass-loader": "^9.0.2"
+  }
+}
