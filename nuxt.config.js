@@ -112,6 +112,7 @@ export default {
 
   axios: {
     baseURL: process.env.BASE_URL || 'http://localhost:3002',
+    withCredentials: true,
     timeout: 30000
   },
 

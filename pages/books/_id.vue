@@ -6,8 +6,8 @@
       <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
           <li><nuxt-link to="/" >Takanam.in</nuxt-link></li>
-          <!-- <li><nuxt-link :to="{name: 'circles-id', params: {id: book.circle.id}}" >{{book.circle.name}}</nuxt-link></li> -->
-          <li>{{book.circle.name}}</li>
+          <li><nuxt-link :to="{name: 'circles-id', params: {id: book.circle.id}}" >{{book.circle.name}}</nuxt-link></li>
+          <!-- <li>{{book.circle.name}}</li> -->
           <li class="is-active"><a href="#">{{book.title}}</a></li>
         </ul>
       </nav>
@@ -49,7 +49,7 @@
 
           <div class="_circleinfo">
             <h2>サークル情報</h2>
-            <h3>{{book.circle.name}}</h3>
+            <h3><nuxt-link :to="{name: 'circles-id', params: {id: book.circle.id}}" >{{book.circle.name}}</nuxt-link></h3>
             <a :href="book.circle.twitter" target="_blank" v-if="book.circle.twitter" >
               <span class="icons twitter"><twitter/></span>
             </a>
