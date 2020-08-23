@@ -26,9 +26,11 @@
 <script>
 import MainHeader from '~/components/MainHeader'
 import Footer from '~/components/Footer'
+import Informations from '~/components/Informations'
 export default {
   components: {
     MainHeader,
+    Informations,
     Footer
   },
   head () {
@@ -41,6 +43,20 @@ export default {
       ]
     }
   },
+  async asyncData(app) {
+    return {}
+    return app.$axios.get('https://api.sateraito.nagoya/wp-json/wp/v2/posts')
+      .then((f) => {
+        return {
+          posts: f.data
+        }
+      })
+      .catch((e)=>{
+        return {
+          posts: []
+        }
+      })
+  }
 }
 </script>
 
