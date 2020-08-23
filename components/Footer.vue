@@ -22,7 +22,7 @@
 
         <nav id="footMenu" class="column">
           <ul>
-            <li>- About</li>
+            <li>- <nuxt-link to="/about">About</nuxt-link></li>
             <li>- <nuxt-link to="/policy">利用規約</nuxt-link></li>
             <li>- <nuxt-link to="/ping">ping</nuxt-link></li>
           </ul>
