@@ -42,6 +42,7 @@ export default {
         this.success = true
 
         this.status = r.data.enable
+        this.$toast.success('変更したかも！', {})
         this.$emit('success', r.data.data.id)
       } catch(e) {
         if(e.response) {

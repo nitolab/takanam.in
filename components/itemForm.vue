@@ -44,7 +44,7 @@
         <UrlInput label="Pixiv" v-model:value="urls.pixiv" />
       </div>
 
-      <div class="field">
+      <div class="field" v-if="!isnew">
         <SampleInput
           :max="4"
           @del="f=>sample_deletes=f"
@@ -102,6 +102,11 @@ export default {
       }
     }
   },
+  computed: {
+    isnew() {
+      return !this.id
+    }
+  },
   mounted() {
     this.refresh(this.item)
   },
@@ -156,7 +161,7 @@ export default {
         fd.append('urls[website]', this.urls.website)
 
         let r;
-        if(this.id){
+        if(!this.isnew){
           r = await this.$axios.put(
             'user/items/'+this.id,
             fd,
