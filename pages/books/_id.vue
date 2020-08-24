@@ -38,11 +38,11 @@
           <TwitterShare :text="book.title" />
 
           <div class="_description">
-            {{ book.description }}
+            <div v-html="book.description_html"/>
           </div>
 
           <div class="_links">
-            <div class="_item" v-for="link in book.links">
+            <div class="_item" v-if="link" v-for="link in book.links">
               <a :href="link.url">{{link_label(link.for)}}</a>
             </div>
           </div>
@@ -145,12 +145,12 @@ export default {
   },
   head () {
     let meta = [
-        { hid: 'description', name: 'description', content: this.book.description },
+        { hid: 'description', name: 'description', content: this.book.description_short },
         { hid: 'twitter:card', name: 'twitter:card', content: 'summary' },
         { hid: 'author', name: 'author', content: this.book.circle.name },
         { hid: 'og:url', name: 'og:url', content: process.env.siteUrl+this.$route.fullPath },
         { hid: 'og:title', name: 'og:title', content: this.book.title },
-        { hid: 'og:description', name: 'og:description', content: this.book.description },
+        { hid: 'og:description', name: 'og:description', content: this.book.description_short },
         { hid: 'og:image', name: 'og:image', content: this.book.main_image_str },
       ]
     if(this.book.circle.twitter_id)meta.push({ hid: 'twitter:creator', name: 'twitter:creator', content: '@' + this.book.circle.twitter_id });
@@ -164,7 +164,7 @@ export default {
     if(params.data){
       return { book: params.data }
     }
-    return axios.get('items/'+params.id)
+    return app.$axios.get('items/'+params.id)
       .then((res) => {
         return { book: res.data.data }
       })

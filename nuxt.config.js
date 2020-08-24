@@ -85,12 +85,6 @@ export default {
         debug: false
       }
     ],
-    [
-      '@nuxtjs/component-cache',
-      {
-        maxAge: 1000 * process.env.NODE_ENV == 'production' ? 60 : 30
-      }
-    ],
     'nuxt-svg-loader',
   ],
 
@@ -113,7 +107,7 @@ export default {
   axios: {
     baseURL: process.env.BASE_URL || 'http://localhost:3002',
     withCredentials: true,
-    timeout: 30000
+    timeout: 60000
   },
 
   sentry: {

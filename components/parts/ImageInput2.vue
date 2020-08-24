@@ -10,7 +10,13 @@
         </div>
         <div class="file is-boxed" v-if="!file && !thumbnail">
           <label class="file-label">
-            <input class="file-input" type="file" name="resume" @change="onDrop">
+            <input
+              class="file-input"
+              type="file"
+              name="resume"
+              accept="image/jpeg,image/png,image/gif,.jpeg,.jpg,.png,.gif"
+              @change="onDrop"
+            >
             <span class="file-cta">
               <span class="file-icon">
                 <i class="fas fa-upload"></i>
