@@ -22,7 +22,8 @@
             <div class="column is-4" v-for="item in items">
               <nuxt-link :to="'/books/'+item.id">
                 {{item.title}}
-                <img :src="item.main_image_thumb" />
+                <!-- <img :src="item.main_image_thumb" /> -->
+                <ItemCard :item="item" />
               </nuxt-link>
             </div>
           </div>
@@ -35,7 +36,11 @@
 </template>
 
 <script>
+import ItemCard from '~/components/parts/ItemCard'
 export default {
+  components: [
+    ItemCard
+  ],
   data() {
     return {}
   },

@@ -17,6 +17,9 @@ export default{
   async asyncData({app,error,params,$sentry}) {
     return app.$axios.get('user/email/validate?verifier='+params.validation)
       .then((r)=>{
+        // if(this.$store.state.session.token){
+        //   await this.$store.dispatch('session/load', this.$store.state.session.token)
+        // }
         return {status: true}
       })
       .catch((err)=>{
