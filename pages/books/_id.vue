@@ -33,6 +33,7 @@
         <div class="column"></div>
 
         <div class="column is-3">
+
           <h1>{{book.title}}</h1>
 
           <TwitterShare :text="book.title" />
@@ -45,6 +46,11 @@
             <div class="_item" v-if="link" v-for="link in book.links">
               <a :href="link.url">{{link_label(link.for)}}</a>
             </div>
+          </div>
+
+          <div class="zamas" v-if="$device.isMobileOrTablet&&false">
+            <!-- <TwitterShare :text="book.title" /> -->
+            <button>share with Twitter</button>
           </div>
 
           <div class="_circleinfo">
@@ -72,8 +78,15 @@
       padding: 1em;
     }
   }
-  ._mainimage {
+  .zamas {
     width: 100%;
+    height:3em;
+    position: fixed;
+    bottom: 0;
+    left:0;
+    right:0;
+    z-index: 100000;
+    background-color: #39c337;
   }
   ._circleinfo {
     .icons {
@@ -106,8 +119,6 @@
 </style>
 
 <script>
-import axios from '~/plugins/axios'
-
 import TwitterShare from '~/components/parts/TwitterShare'
 import ImageViewer from '~/components/parts/ImageViewer'
 import twitter from '@fa/brands/twitter.svg'
@@ -166,7 +177,9 @@ export default {
     }
     return app.$axios.get('items/'+params.id)
       .then((res) => {
-        return { book: res.data.data }
+        return {
+          book: res.data.data.item
+        }
       })
       .catch((e)=> {
         if(e.response){

@@ -45,7 +45,7 @@ export default {
   },
   async asyncData(app) {
     return {}
-    return app.$axios.get('https://api.sateraito.nagoya/wp-json/wp/v2/posts')
+    return app.$axios.get('https://doc.nitolab.com/wp-json/wp/v2/takanami')
       .then((f) => {
         return {
           posts: f.data

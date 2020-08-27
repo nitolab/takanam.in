@@ -56,7 +56,8 @@ export default {
   plugins: [
     { src: '~plugins/autoRefresh.js', mode: 'client' },
     { src: '~plugins/vue-toast-notification.js', mode: 'client' },
-    { src: '~plugins/vue-js-modal.js', mode: 'client' },
+    { src: '~plugins/vue-js-modal.js'},
+    { src: '~plugins/tinybox.js'},
   ],
   /*
   ** Auto import components
@@ -67,9 +68,6 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-  ],
-
-  modules: [
   ],
 
   /*
@@ -86,6 +84,7 @@ export default {
       }
     ],
     'nuxt-svg-loader',
+    '@nuxtjs/device',
   ],
 
   toast: {
