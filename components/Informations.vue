@@ -1,8 +1,12 @@
 <template>
   <div>
+    <h2>Informations</h2>
     <ul>
       <li v-for="post in posts">
-        <nuxt-link :to="'info/'+post.id" >{{post.title.rendered}}</nuxt-link>
+        {{post.date}}
+        <nuxt-link
+          :to="{name: 'info-id', params:{id: post.id, post: post}}"
+        >{{post.title.rendered}}</nuxt-link>
       </li>
     </ul>
   </div>
@@ -10,12 +14,13 @@
 
 <script>
 export default {
-  props:[
-    'posts'
-  ],
+  props:{
+    posts: {
+      default: []
+    }
+  },
   data() {
     return {
-      famas: "nitori"
     }
   }
 }

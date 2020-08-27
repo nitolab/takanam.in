@@ -16,7 +16,6 @@
             </div>
             <div class="column">
               <span>{{$store.state.session.user.name}}</span>
-
             </div>
           </div>
 

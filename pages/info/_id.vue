@@ -26,14 +26,28 @@ export default {
       meta: []
     }
   },
+  head () {
+    let meta = [
+        // { hid: 'description', name: 'description', content: this.book.description_short },
+        // { hid: 'author', name: 'author', content: this.book.circle.name },
+      ]
+    return {
+      title: this.post.title.rendered + ' | Takanam.in Information',
+      meta: meta
+    }
+  },
   async asyncData({app,params,error,$sentry}) {
-    return app.$axios.get('https://api.sateraito.nagoya/wp-json/wp/v2/posts/'+params.id)
+    if(params.post){
+      return {post: params.post}
+    }
+    return app.$axios.get('https://doc.nitolab.com/wp-json/wp/v2/takanami/'+params.id)
       .then((r) => {
         return {
           post: r.data
         }
       })
       .catch((e)=>{
+        console.log(e)
         if(e.response){
           return error({statusCode: e.response.status, message: e.response.status.statusText})
         }

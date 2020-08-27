@@ -1,5 +1,5 @@
 <template>
-  <div v-if="show" class="tlightbox" outer="outer" @click="outerClick" >
+  <div v-if="s" class="tlightbox" outer="outer" @click="outerClick" >
 <!--     <div class="_ctl _back" @click="back"></div>
     <div class="_ctl _next" @click="next"></div>
  -->
@@ -79,13 +79,18 @@
 
 <script>
 export default {
-  props: [
-    'images',
-    'show'
-  ],
+  props: {
+    images: {
+      default: []
+    },
+    show: {
+      default: false
+    }
+  },
   data() {
     return {
-      current: 0
+      current: 0,
+      s: true,
     }
   },
   computed: {
@@ -99,6 +104,11 @@ export default {
       return this.current > 0
     }
   },
+  watch: {
+    show(b,a){
+      console.log(b+'->'+a)
+    }
+  },
   methods: {
     next() {
       if(this.n) return this.current++
@@ -110,6 +120,14 @@ export default {
       if(ev.target.getAttribute('outer')!=='outer') return;
       this.$emit('outer')
     },
+  },
+  mounted() {
+    if(process.server)return;
+    document.body.addEventListener('keydown',ev=>{
+      if(!ev.isTrusted)return;
+      if(ev.keyCode != 27)return;
+      this.s = false
+    })
   }
 }
 </script>

@@ -17,6 +17,18 @@
         <article>
           <p>絶賛テスト中</p>
         </article>
+        <div class="columns">
+        </div>
+        <div class="columns">
+          <div v-for="book in books" class="column is-4">
+            <nuxt-link :to="'books/'+book.id">
+              <ItemCard :item="book" />
+            </nuxt-link>
+          </div>
+        </div>
+        <div>
+          <Informations :posts="posts" />
+        </div>
       </div>
     </div>
     <Footer/>
@@ -27,10 +39,13 @@
 import MainHeader from '~/components/MainHeader'
 import Footer from '~/components/Footer'
 import Informations from '~/components/Informations'
+import ItemCard from '~/components/parts/ItemCard'
+
 export default {
   components: {
     MainHeader,
     Informations,
+    ItemCard,
     Footer
   },
   head () {
@@ -43,19 +58,25 @@ export default {
       ]
     }
   },
-  async asyncData(app) {
+  data() {
     return {}
-    return app.$axios.get('https://doc.nitolab.com/wp-json/wp/v2/takanami')
-      .then((f) => {
-        return {
-          posts: f.data
-        }
-      })
-      .catch((e)=>{
-        return {
-          posts: []
-        }
-      })
+  },
+  async asyncData(app) {
+    return Promise.all([
+      app.$axios.get('https://doc.nitolab.com/wp-json/wp/v2/takanami'),
+      app.$axios.$get('/items')
+    ]).then(([inform,books])=>{
+      return {
+        posts: inform.data,
+        books: books.data
+      }
+    }).catch((e)=>{
+      console.log(e)
+      return {
+        posts: [],
+        books: []
+      }
+    })
   }
 }
 </script>

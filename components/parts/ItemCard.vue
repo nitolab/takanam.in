@@ -31,9 +31,7 @@
 export default {
   props: {
     circle: {
-      default: {
-        name: false
-      }
+      default: false
     },
     item: {
       default: {
