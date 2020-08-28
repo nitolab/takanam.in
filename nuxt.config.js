@@ -56,7 +56,7 @@ export default {
   plugins: [
     { src: '~plugins/autoRefresh.js', mode: 'client' },
     { src: '~plugins/vue-toast-notification.js', mode: 'client' },
-    { src: '~plugins/vue-js-modal.js'},
+    { src: '~plugins/vue-js-modal.js', mode: 'client'},
     { src: '~plugins/tinybox.js'},
   ],
   /*
@@ -120,7 +120,8 @@ export default {
       config.resolve.extensions.push('.svg')
       config.resolve.alias['@font-mfizz'] = path.join(__dirname, 'node_modules/font-mfizz/src/svg')
       config.resolve.alias['@fa'] = path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/svgs')
-    }
+    },
+    extractCSS: true
   },
 
   hooks: {
