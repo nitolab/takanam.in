@@ -17,9 +17,7 @@
         <article>
           <p>絶賛テスト中</p>
         </article>
-        <div class="columns">
-          <button @click="rrr">famas</button>
-        </div>
+
         <div class="cn">
           <div v-for="book in books" class="c">
             <nuxt-link :to="'books/'+book.id">
@@ -27,6 +25,7 @@
             </nuxt-link>
           </div>
         </div>
+
         <div>
           <Informations :posts="posts" />
         </div>
@@ -68,16 +67,6 @@ export default {
     return {}
   },
   methods: {
-    rrr(ev){
-      console.log(ev)
-      this.$axios.get('some-url')
-        .then((responce)=>{/*some function*/})
-        .catch((e)=>{
-          if(e.response && e.response.status == 503){
-            this.$nuxt.error({statusCode: 500})
-          }
-        })
-    }
   },
   async asyncData(app) {
     return Promise.all([
