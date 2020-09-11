@@ -14,7 +14,7 @@
           <div class="_success" v-if="success">
             <div class="__icon"><check/></div>
             <p>作成完了しました。</p>
-            <p><nuxt-link :to="{ name: 'status-items-id', params: { id: id } }" >詳細ページ</nuxt-link>に移動して表示を有効にすれば公開されます</p>
+            <p><nuxt-link :to="{ name: 'status-items-id', params: { id: id } }" >詳細ページ</nuxt-link>でサンプルを追加し、表示を有効にすれば公開されます</p>
           </div>
         </div>
       </div>

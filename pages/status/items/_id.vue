@@ -14,6 +14,8 @@
           <div class="_box">
             <h3>表示確認</h3>
             <nuxt-link :to="{ name: 'books-id', params: { id: item.id } }" >確認する</nuxt-link>
+            <br/>
+            ※ 反映に1分程度かかる場合があります
           </div>
 
           <div class="_box">

@@ -56,7 +56,9 @@ export default {
   plugins: [
     { src: '~plugins/autoRefresh.js', mode: 'client' },
     { src: '~plugins/vue-toast-notification.js', mode: 'client' },
-    { src: '~plugins/vue-js-modal.js', mode: 'client' },
+    { src: '~plugins/vue-js-modal.js', mode: 'client'},
+    { src: '~plugins/sw.js', mode: 'client'},
+    { src: '~plugins/tinybox.js'},
   ],
   /*
   ** Auto import components
@@ -67,9 +69,6 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-  ],
-
-  modules: [
   ],
 
   /*
@@ -85,13 +84,8 @@ export default {
         debug: false
       }
     ],
-    [
-      '@nuxtjs/component-cache',
-      {
-        maxAge: 1000 * process.env.NODE_ENV == 'production' ? 60 : 30
-      }
-    ],
     'nuxt-svg-loader',
+    '@nuxtjs/device',
   ],
 
   toast: {
@@ -112,7 +106,8 @@ export default {
 
   axios: {
     baseURL: process.env.BASE_URL || 'http://localhost:3002',
-    timeout: 30000
+    withCredentials: true,
+    timeout: 60000
   },
 
   sentry: {
@@ -126,7 +121,8 @@ export default {
       config.resolve.extensions.push('.svg')
       config.resolve.alias['@font-mfizz'] = path.join(__dirname, 'node_modules/font-mfizz/src/svg')
       config.resolve.alias['@fa'] = path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free/svgs')
-    }
+    },
+    extractCSS: true
   },
 
   hooks: {

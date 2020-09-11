@@ -44,7 +44,7 @@
         <UrlInput label="Pixiv" v-model:value="urls.pixiv" />
       </div>
 
-      <div class="field">
+      <div class="field" v-if="!isnew">
         <SampleInput
           :max="4"
           @del="f=>sample_deletes=f"
@@ -64,14 +64,12 @@
 </template>
 
 <script>
-import ImageInput2 from '~/components/parts/ImageInput2'
 import SampleInput from '~/components/parts/SampleInput'
 import UrlInput from '~/components/parts/UrlInput'
 
 export default {
   components: {
     UrlInput,
-    ImageInput2,
     SampleInput,
   },
   props: [
@@ -100,6 +98,11 @@ export default {
         booth: '',
         pixiv: '',
       }
+    }
+  },
+  computed: {
+    isnew() {
+      return !this.id
     }
   },
   mounted() {
@@ -156,7 +159,7 @@ export default {
         fd.append('urls[website]', this.urls.website)
 
         let r;
-        if(this.id){
+        if(!this.isnew){
           r = await this.$axios.put(
             'user/items/'+this.id,
             fd,

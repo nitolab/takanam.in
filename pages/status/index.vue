@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="dashboard">
     <MainHeader/>
 
     <div class="wrp container">
@@ -19,6 +19,9 @@
             </div>
           </div>
 
+          <section class="information" v-if="info">
+            <div v-html="info.content.rendered" />
+          </section>
         </div>
       </div>
     </div>
@@ -27,40 +30,45 @@
 </template>
 
 <script>
-import axios from 'axios'
-import MainHeader from '~/components/MainHeader'
-import Footer from '~/components/Footer'
 import StatusNav from '~/components/StatusNav'
 import UserMenu from '~/components/parts/UserMenu'
 
 export default {
   middleware: 'session',
   components: {
-    MainHeader,
-    Footer,
     StatusNav,
     UserMenu,
+  },
+  data() {
+    return {}
+  },
+  async asyncData({app}) {
+    return app.$axios.get('https://doc.nitolab.com/wp-json/wp/v2/takanami_info/')
+      .then((r)=>{
+        return {
+          info: r.data.length > 0 ? r.data[0] : null
+        }
+      })
+      .catch((e)=>{
+        return {
+          info: null
+        }
+      })
   }
 }
 </script>
 
-<style lang="scss" scoped>
-.bt {
-  width:3em;
-  height:3em;
-}
-.loading {
-  width: 1.1em;
-  height: 1.1em;
-  border: 2px solid rgba(0, 181, 173, 0.6);
-  border-top-color: #fff;
-  border-radius: 50%;
-  animation: spinner .5s linear infinite;
-}
-
-@keyframes spinner {
-  100% {
-    transform: rotate(360deg);
+<style lang="scss">
+#dashboard {
+  .information {
+    max-width: 100%;
+    padding: 2em;
+    img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
   }
 }
 </style>

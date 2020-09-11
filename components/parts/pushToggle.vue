@@ -1,55 +1,52 @@
 <template>
   <div class="form-toggle">
-    <label :for="'sw-'+name" class="clickable" :class="{checked: status}">
-    <input type="checkbox" class="sw" :id="'sw-'+name" v-model="status" v-on:change="change" />
+    <label :for="'sw-push'" class="clickable" :class="{checked: isSubscribed}">
+    <input type="checkbox" class="sw" :id="'sw-push'" v-model="isSubscribed" v-on:change="change" />
     </label>
   </div>
 </template>
 
 <script>
+import {subscribe, unsubscribe, isSubscribed} from '~/plugins/sw'
 export default {
   props: [
-    'name',
-    'state',
-    'item_id',
   ],
   data() {
     return {
-      status: this.state,
       processing: false,
       success: false,
+      isSubscribed: false,
+      enableSubscribe: false
+    }
+  },
+  mounted() {
+    if(process.client){
+      isSubscribed(this.pushInit)
     }
   },
   methods: {
+    pushInit(sub) {
+      this.isSubscribed = !(sub === null)
+      this.enableSubscribe = true
+    },
+    subscribe() {
+      subscribe('BBb3czMP2oFrYBERQDk04iZJuiIVY8S4F1RLVy8eWJQ7Y1FrXte9r6pu7jD802LV8MnIIrSfT0x03zzYzh4yARY')
+        .then(this.sb)
+    },
+    async sb(s) {
+      this.$axios.$post('user/push',
+        s.toJSON(),
+        {headers:{'x-api-key': this.$store.state.session.token}}
+      ).then(r=>{
+        console.log(r)
+      })
+    },
     async change(ev) {
-      try {
-        this.processing = true;
-        this.success = false;
-        const r = await this.$axios.$put(
-          'user/items/'+this.item_id,
-          {
-            item:{
-              enable: this.status,
-            }
-          },
-          {
-            headers: {
-              'x-api-key': this.$store.state.session.token
-            }
-          }
-        )
-        this.processing = false;
-        this.success = true
-
-        this.status = r.data.enable
-        this.$toast.success('変更したかも！', {})
-        this.$emit('success', r.data.data.id)
-      } catch(e) {
-        if(e.response) {
-          this.status = !this.status
-        }
-        this.$sentry.captureException(e)
-        this.$emit('error', e)
+      this.processing = true;
+      if(this.isSubscribed) {
+        this.subscribe()
+      }else{
+        unsubscribe()
       }
     }
   }

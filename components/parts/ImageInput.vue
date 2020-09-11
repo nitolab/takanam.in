@@ -113,8 +113,7 @@ export default {
   },
   methods: {
     onDrop(e) {
-      console.log(e)
-      let files = e.target.files || e.dataTransfer.files;
+      const files = e.target.files || e.dataTransfer.files;
       for(let i=0;i<files.length;i++){
         if(['image/jpeg', 'image/png', 'image/gif'].indexOf(files[i])){
           this.f = files[i]
@@ -133,9 +132,6 @@ export default {
     delImage(index) {
       this.thumbnail = null
       this.$emit('input', null)
-    },
-    async sendAction(ev) {
-      console.log(ev)
     }
   }
 }
