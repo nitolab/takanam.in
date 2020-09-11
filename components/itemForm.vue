@@ -64,14 +64,12 @@
 </template>
 
 <script>
-import ImageInput2 from '~/components/parts/ImageInput2'
 import SampleInput from '~/components/parts/SampleInput'
 import UrlInput from '~/components/parts/UrlInput'
 
 export default {
   components: {
     UrlInput,
-    ImageInput2,
     SampleInput,
   },
   props: [

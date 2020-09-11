@@ -18,8 +18,8 @@
         </div>
         <div>
           <h2>このサークルの作品</h2>
-          <div class="columns">
-            <div class="column is-4" v-for="item in items">
+          <div class="cn">
+            <div class="c" v-for="item in items">
               <nuxt-link :to="'/books/'+item.id">
                 {{item.title}}
                 <!-- <img :src="item.main_image_thumb" /> -->

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="indexpage">
     <MainHeader/>
 
     <div class="wrp">
@@ -18,9 +18,10 @@
           <p>絶賛テスト中</p>
         </article>
         <div class="columns">
+          <button @click="rrr">famas</button>
         </div>
-        <div class="columns">
-          <div v-for="book in books" class="column is-4">
+        <div class="cn">
+          <div v-for="book in books" class="c">
             <nuxt-link :to="'books/'+book.id">
               <ItemCard :item="book" />
             </nuxt-link>
@@ -34,6 +35,11 @@
     <Footer/>
   </div>
 </template>
+
+<style lang="scss">
+#indexpage {
+}
+</style>
 
 <script>
 import MainHeader from '~/components/MainHeader'
@@ -61,6 +67,18 @@ export default {
   data() {
     return {}
   },
+  methods: {
+    rrr(ev){
+      console.log(ev)
+      this.$axios.get('some-url')
+        .then((responce)=>{/*some function*/})
+        .catch((e)=>{
+          if(e.response && e.response.status == 503){
+            this.$nuxt.error({statusCode: 500})
+          }
+        })
+    }
+  },
   async asyncData(app) {
     return Promise.all([
       app.$axios.get('https://doc.nitolab.com/wp-json/wp/v2/takanami'),
@@ -81,5 +99,3 @@ export default {
 }
 </script>
 
-<style>
-</style>
