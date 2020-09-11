@@ -57,6 +57,7 @@ export default {
     { src: '~plugins/autoRefresh.js', mode: 'client' },
     { src: '~plugins/vue-toast-notification.js', mode: 'client' },
     { src: '~plugins/vue-js-modal.js', mode: 'client'},
+    { src: '~plugins/sw.js', mode: 'client'},
     { src: '~plugins/tinybox.js'},
   ],
   /*

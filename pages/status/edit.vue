@@ -29,6 +29,10 @@
                 />
               </div>
 
+              <div class="_box">
+                <pushToggle />
+              </div>
+
               <div class="_box __rem">
                 <button class="button is-danger" @click="delClick">remove Account</button>
               </div>
@@ -46,21 +50,21 @@
 import LoginWithTwitterButton from '~/components/parts/LoginWithTwitterButton'
 import PasswordChangeForm from '~/components/parts/PasswordChangeForm'
 import EmailChangeForm from '~/components/parts/EmailChangeForm'
-import MainHeader from '~/components/MainHeader'
-import Footer from '~/components/Footer'
+import pushToggle from '~/components/parts/pushToggle'
 
 export default {
   middleware: 'session',
   components: {
-    MainHeader,
+    pushToggle,
     EmailChangeForm,
-    Footer,
     PasswordChangeForm,
     LoginWithTwitterButton
   },
   data() {
     return {
       ok: false,
+      isSubscribed: false,
+      enableSubscribe: false,
     }
   },
   methods: {
